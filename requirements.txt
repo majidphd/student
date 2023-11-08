@@ -1,5 +1,3 @@
-openpyxl
 pandas
 plotly
 streamlit
-plotly.express
