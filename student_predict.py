@@ -1,6 +1,6 @@
 import pandas as pd
 import streamlit as st
-import plotly as px
+import plotly.express as px
 
 ### --- Page introduction --- By Majed
 st.set_page_config(page_title='Students Prediction')
