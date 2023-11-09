@@ -1,3 +1,5 @@
+### --- This work for 704 - streamlit project --- By Majed
+
 import pandas as pd
 import streamlit as st
 import plotly.express as px
@@ -19,44 +21,69 @@ grad_s = pd.read_excel(excel_file,
 
 def section1():
     ### --- show the tables to the user --- By Majed
+    st.subheader(':blue[___________________________________________________]')
     st.info('**:blue[Table 1-1: Enrolled students in higher education for the past 15 years]**')
     st.dataframe(new_s)
-    st.caption('______________________________________________')
+    st.subheader(':blue[___________________________________________________]')
     st.info('**:blue[Table 1-2: Graduated students in higher education for the past 15 years]**')
     st.dataframe(grad_s)
-    st.caption('______________________________________________')
+    st.subheader(':blue[___________________________________________________]')
 
 def section2():
-    ### --- choices for the charts --- By Majed
-    st.success('**:green[Please choose the criteria below for the chart]**')
+    ### --- start the choices for the charts --- By Majed
+    ### --- line-chart --- By Majed
+    st.subheader(':green[___________________________________________________]')
+    st.success('**:green[L I N E - C H A R T: choose from the criteria below for the chart]**')
     selected_state = st.selectbox('Select the state of the student:', all_s['state'].unique())
     selected_degree = st.selectbox('Select the degree of the student:', all_s['degree'].unique())
     selected_sex = st.selectbox('Select the sex of the student:', all_s['sex'].unique())
     filtered_data = all_s[
         (all_s['state'] == selected_state) &
         (all_s['degree'] == selected_degree) &
-        (all_s['sex'] == selected_sex) 
+        (all_s['sex'] == selected_sex)
     ]
-
-
-    ### --- show the charts according to user choices --- By Majed
-    bar_chart = px.bar(filtered_data,
+    line_chart = px.line(filtered_data,
                    x='years',
                    y='numbers',
                    text='numbers',
                    color_discrete_sequence = ['#F63366']*len(all_s),
                    template= 'plotly_white')
-    st.plotly_chart(bar_chart)
-    st.caption('______________________________________________')
-    pie_chart = px.pie(filtered_data,
-                title='The ratio of students for 15 years',
+    st.plotly_chart(line_chart)
+
+    st.subheader(':green[___________________________________________________]')
+    ### --- treemap-chart --- By Majed    
+    st.success('**:green[T R E E M A P - C H A R T: choose from the criteria below for the chart]**')
+    selected_state2 = st.selectbox('Select the state please:', all_s['state'].unique())
+    selected_years2 = st.selectbox('Select the year please:', all_s['years'].unique())
+    filtered_data2 = all_s[
+        (all_s['state'] == selected_state2) &
+        ( all_s['years'] == selected_years2)
+    ]
+    treemap_chart = px.treemap(filtered_data2,
+                   path=[ 'degree', 'sex', 'numbers'], 
+                   values='numbers')
+                   #text='numbers',
+                   #color_discrete_sequence = ['#F63366']*len(all_s)
+                   #template= 'plotly_white')
+    st.plotly_chart(treemap_chart)
+    st.subheader(':green[___________________________________________________]')
+    
+    ### --- pie-chart --- By Majed    
+    st.success('**:green[P I E - C H A R T: choose from the criteria below for the chart]**')
+    selected_years = st.selectbox('Select the year:', all_s['years'].unique())
+    selected_degree3 = st.selectbox('Select the degree:', all_s['degree'].unique())
+    filtered_data3 = all_s[ (all_s['degree'] == selected_degree3) & (all_s['years'] == selected_years)]
+    pie_chart = px.pie(filtered_data3,
+                title='The ratio of degree during the above year',
                 values='numbers',
-                names='years')
+                names='state')
     st.plotly_chart(pie_chart)
+    st.subheader(':green[___________________________________________________]')
 
 def section3():
     ### --- start the prediction part --- By Majed
     ### --- input choices from the user --- By Majed
+    st.subheader(':red[___________________________________________________]')
     st.error('**:red[Please choose the criteria below for the graduates prediction]**')
     selected_degree2 = st.selectbox('Select the degree of enrolled student:', all_s['degree'].unique())
     selected_sex2 = st.selectbox('Select the sex of enrolled student:', all_s['sex'].unique())
@@ -88,14 +115,14 @@ def section3():
     else:
         result = 0
     st.subheader(f":orange[The number of expected graduation students according to the above criteria is = ] {result} students")
-
+    st.subheader(':red[___________________________________________________]')
+    
 def main():
     ### --- Page introduction --- By Majed
     st.set_page_config(page_title='Students Prediction')
-    st.caption('______________________________________________')
+    st.subheader('___________________________________________________')
     st.subheader(':rainbow[Statistics of Enrolled and Graduated Students in Saudi Universities During the Past 15 Years :student:]')
     st.markdown('**STREAMLIT-PROJECT: DONE ® 2023 BY:** ***ALL 704 STUDENTS***')
-    st.caption('______________________________________________')
 
     # Create buttons in the sidebar --- By Majed
     selected_section = st.sidebar.radio("Selection Part for the Students", 
