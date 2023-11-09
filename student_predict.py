@@ -7,7 +7,7 @@ st.set_page_config(page_title='Students Prediction')
 st.title('**:violet[________________________________]**')
 st.title(':rainbow[Graduating Students Prediction :student: from Higher Education at KSA] :teacher: ')
 st.title('**:violet[________________________________]**')
-st.subheader('Done By: ***Majed, Hani, Ali, & Omar***')
+st.subheader('Done By: ***Majed, Hani, Ali, Moteb, & Omar***')
 st.caption('______________________________________________')
 
 ### --- load excel table --- By Majed
