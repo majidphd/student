@@ -125,11 +125,20 @@ def main():
     st.markdown('**STREAMLIT-PROJECT: DONE ® 2023 BY:** ***ALL 704 STUDENTS***')
 
     # Create buttons in the sidebar --- By Majed
-    selected_section = st.sidebar.radio("Selection Part for the Students", 
-                                         [":blue[Student data over 15 years]", 
-                                         ":green[Charts for Students]", 
-                                         ":red[Predicting graduates]"])
-
+    st.sidebar.subheader('Select any page from below:')
+    selected_section = st.sidebar.radio(
+                    "", 
+                    [":blue[Student data over 15 years]", 
+                    ":green[Charts for Students]", 
+                    ":red[Predicting graduates]"],
+                    captions = [":blue[ـــــــــــــــــــــــــــــــــــــــــــــــــــ]", 
+                    ":green[ـــــــــــــــــــــــــــــــــــــــــــــــــــ]", 
+                    ":red[ـــــــــــــــــــــــــــــــــــــــــــــــــــ]"])
+    st.sidebar.markdown('________________________________')
+    st.sidebar.markdown('Students Data Resource from SAMA: https://sama.gov.sa/en-us/economicreports/pages/report.aspx?cid=127#')
+    st.sidebar.markdown('Download all files from GitHub: https://github.com/majidphd/student/tree/main')
+    st.sidebar.markdown('Deploy your app from Streamlit: https://share.streamlit.io/')
+   
     # Display the selected section --- By Majed
     if selected_section == ":blue[Student data over 15 years]":
         section1()
