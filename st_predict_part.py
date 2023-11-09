@@ -94,7 +94,7 @@ def main():
     st.set_page_config(page_title='Students Prediction')
     st.caption('______________________________________________')
     st.subheader(':rainbow[Statistics of Enrolled and Graduated Students in Saudi Universities During the Past 15 Years :student:]')
-    st.markdown('***S T R E A M L I T - P R O J E C T ® 2 0 2 3 : M a j e d ,  H a n i ,  A l i ,  M o t e b ,  &  O m a r***')
+    st.markdown('***S T R E A M L I T - P R O J E C T    ®    2 0 2 3    A L L    7 0 4    S T U D E N T S***')
     st.caption('______________________________________________')
 
     # Create buttons in the sidebar --- By Majed
