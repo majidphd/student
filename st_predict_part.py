@@ -1,5 +1,5 @@
-### --- This work for 704 - streamlit project --- By Majed
-
+### --- This work for 704 Prof-Naif Radi - streamlit project --- By Majed
+### --- load libraries --- By Majed
 import pandas as pd
 import streamlit as st
 import plotly.express as px
@@ -18,9 +18,9 @@ new_s = pd.read_excel(excel_file,
 grad_s = pd.read_excel(excel_file,
                                 sheet_name=sheet_name3)
 
-
+### --- define and create 3 sections  --- By Majed
 def section1():
-    ### --- show the tables to the user --- By Majed
+    ### --- 1st section: show the tables to the user --- By Majed
     st.subheader(':blue[___________________________________________________]')
     st.info('**:blue[Table 1-1: Enrolled students in higher education for the past 15 years]**')
     st.dataframe(new_s)
@@ -30,7 +30,7 @@ def section1():
     st.subheader(':blue[___________________________________________________]')
 
 def section2():
-    ### --- start the choices for the charts --- By Majed
+    ### --- 2nd section: start the choices for the charts --- By Majed
     ### --- line-chart --- By Majed
     st.subheader(':green[___________________________________________________]')
     st.success('**:green[L I N E - C H A R T: choose from the criteria below for the chart]**')
@@ -50,8 +50,8 @@ def section2():
                    template= 'plotly_white')
     st.plotly_chart(line_chart)
 
-    st.subheader(':green[___________________________________________________]')
     ### --- treemap-chart --- By Majed    
+    st.subheader(':green[___________________________________________________]')
     st.success('**:green[T R E E M A P - C H A R T: choose from the criteria below for the chart]**')
     selected_state2 = st.selectbox('Select the state please:', all_s['state'].unique())
     selected_years2 = st.selectbox('Select the year please:', all_s['years'].unique())
@@ -62,9 +62,6 @@ def section2():
     treemap_chart = px.treemap(filtered_data2,
                    path=[ 'degree', 'sex', 'numbers'], 
                    values='numbers')
-                   #text='numbers',
-                   #color_discrete_sequence = ['#F63366']*len(all_s)
-                   #template= 'plotly_white')
     st.plotly_chart(treemap_chart)
     st.subheader(':green[___________________________________________________]')
     
@@ -80,8 +77,9 @@ def section2():
     st.plotly_chart(pie_chart)
     st.subheader(':green[___________________________________________________]')
 
+
 def section3():
-    ### --- start the prediction part --- By Majed
+    ### --- 3rd section: start the prediction part --- By Majed
     ### --- input choices from the user --- By Majed
     st.subheader(':red[___________________________________________________]')
     st.error('**:red[Please choose the criteria below for the graduates prediction]**')
@@ -97,21 +95,21 @@ def section3():
     elif write_number <= 0:
         st.subheader('**:red[:smile:يا وااااااااد قووووووووم يا وااااااااد]**')
     elif (selected_degree2 == "PhD" and selected_sex2 == "Male"):
-        result = write_number * 0.1
+        result = round(write_number * 0.1)
     elif (selected_degree2 == "PhD" and selected_sex2 == "Female"):
-        result = write_number * 0.09
+        result = round(write_number * 0.09)
     elif (selected_degree2 == "Master" and selected_sex2 == "Male"):
-        result = write_number * 0.15
+        result = round(write_number * 0.15)
     elif (selected_degree2 == "Master" and selected_sex2 == "Female"):
-        result = write_number * 0.14
+        result = round(write_number * 0.14)
     elif (selected_degree2 == "Diploma" and selected_sex2 == "Male"):
-        result = write_number * 0.57
+        result = round(write_number * 0.57)
     elif (selected_degree2 == "Diploma" and selected_sex2 == "Female"):
-        result = write_number * 0.6
+        result = round(write_number * 0.6)
     elif (selected_degree2 == "Bachelor" and selected_sex2 == "Male"):
-        result = write_number * 0.11
+        result = round(write_number * 0.11)
     elif (selected_degree2 == "Bachelor" and selected_sex2 == "Female"):
-        result = write_number * 0.15
+        result = round(write_number * 0.15)
     else:
         result = 0
     st.subheader(f":orange[The number of expected graduation students according to the above criteria is = ] {result} students")
@@ -124,8 +122,8 @@ def main():
     st.subheader(':rainbow[Statistics of Enrolled and Graduated Students in Saudi Universities During the Past 15 Years :student:]')
     st.markdown('**STREAMLIT-PROJECT: DONE ® 2023 BY:** ***ALL 704 STUDENTS***')
 
-    # Create buttons in the sidebar --- By Majed
-    st.sidebar.subheader('Select any page from below:')
+    # --- Create buttons in the sidebar for various sections --- By Majed
+    st.sidebar.subheader('***Select any page from below:***')
     selected_section = st.sidebar.radio(
                     "", 
                     [":blue[Student data over 15 years]", 
@@ -135,6 +133,9 @@ def main():
                     ":green[ـــــــــــــــــــــــــــــــــــــــــــــــــــ]", 
                     ":red[ـــــــــــــــــــــــــــــــــــــــــــــــــــ]"])
     st.sidebar.markdown('________________________________')
+    
+    # --- resources list --- By Majed
+    st.sidebar.subheader('***RESORCES:***')
     st.sidebar.markdown('Students Data Resource from SAMA: https://sama.gov.sa/en-us/economicreports/pages/report.aspx?cid=127#')
     st.sidebar.markdown('Download all files from GitHub: https://github.com/majidphd/student/tree/main')
     st.sidebar.markdown('Deploy your app from Streamlit: https://share.streamlit.io/')
