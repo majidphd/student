@@ -85,7 +85,7 @@ def section3():
     st.error('**:red[Please choose the criteria below for the graduates prediction]**')
     selected_degree2 = st.selectbox('Select the degree of enrolled student:', all_s['degree'].unique())
     selected_sex2 = st.selectbox('Select the sex of enrolled student:', all_s['sex'].unique())
-    write_number = st.number_input("Enter the number of enrolled students:")
+    write_number = st.number_input("Enter the number of enrolled students:", value=0.0, step=1.0, format="%0.1f")
     st.caption('______________________________________________')
 
     ### --- state if conditions for the prediction --- By Majed
